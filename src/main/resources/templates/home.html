@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>CoronaVirus Tracker</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+<style type="text/css">
+.material-icons.md-48 {
+	font-size: 35px;
+}
+
+.totalReportedCases {
+	color: white;
+	text-shadow: 2px 2px black;
+}
+</style>
+</head>
+<body>
+	<div class="shadow p-3 mb-5 bg-body rounded">
+		<div class="shadow-sm p-3 mb-5 bg-body rounded">
+			<h1>
+				<p class="font-italic" align="center">
+					C<span class="material-icons md-36">coronavirus</span>ronaVirus
+					Tracker Application
+				</p>
+				<h1>
+					<i class="fas fa-virus"></i>
+				</h1>
+			</h1>
+		</div>
+		<p>This application shows the current # CoronaVirus cases reported
+			globally</p>
+		<div class="jumbotron">
+			<div class="p-3 mb-2 bg-secondary text-white">
+				<h1 class="display-4 totalReportedCases"
+					th:text="${totalReportedCases}"></h1>
+				<p class="lead">Total cases reported till date across the globe</p>
+			</div>
+			<hr class="my-4">
+			<p>
+				<span>Total number of cases reported since previous day : </span> <span
+					th:text="${totalNewReportedCases}"></span>
+			</p>
+		</div>
+	</div>
+	<table class="table table-striped">
+		<tr>
+			<th>State</th>
+			<th>Country</th>
+			<th>Total Cases Reported Today</th>
+			<th>Variance since Yesterday</th>
+		</tr>
+		<tr th:each="locationStat : ${LocationStats}">
+			<td th:text="${locationStat.state}"></td>
+			<td th:text="${locationStat.country}"></td>
+
+			<td th:text="${locationStat.latestTotalCases}"></td>
+			<td th:text="${locationStat.diffFromPrevDay}"></td>
+		</tr>
+	</table>
+</body>
+
+
+
+</html>
