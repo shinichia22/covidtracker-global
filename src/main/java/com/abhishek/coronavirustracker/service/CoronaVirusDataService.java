@@ -51,7 +51,7 @@ public class CoronaVirusDataService {
 			String state = record.get("Province/State");
 
 			if (state == "") {
-				state = "All";
+				state = "All"; 
 			}
 			locationstat.setState(state);
 			locationstat.setCountry(record.get("Country/Region"));
